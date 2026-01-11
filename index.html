@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Melalui WhatsApp</title>
+    <!-- Tambah ikon dari Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Tambah font dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap');
+
+        /* TEMA CYBER LATAR BELAKANG */
+        body {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3f 50%, #0a0e27 100%);
+        }
+
+        /* Grid cyber yang berkedip */
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(37, 211, 102, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(37, 211, 102, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: blink-grid 8s infinite alternate;
+            z-index: 0;
+        }
+
+        /* Animasi cahaya neon yang bergerak */
+        .cyber-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
+            animation: move-glow 15s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        .glow-1 {
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        /* Animasi teks judul neon */
+        .cyber-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #25d366;
+            text-shadow: 0 0 10px #25d366, 0 0 20px #25d366, 0 0 30px #25d366;
+            animation: glow-title 2s infinite alternate;
+        }
+
+        /* Container utama */
+        .container {
+            background: rgba(10, 14, 39, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            width: 100%;
+            max-width: 450px;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* Style tombol WhatsApp */
+        .wa-item {
+            text-decoration: none;
+            padding: 18px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: transparent;
+            border: 2px solid rgba(37, 211, 102, 0.7);
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
+            font-family: 'Orbitron', sans-serif;
+            /* Warna dan efek neon sama dengan tulisan XanSan */
+            color: #25d366;
+            text-shadow: 0 0 10px #25d366, 0 0 20px #25d366, 0 0 30px #25d366;
+            animation: glow-title 2s infinite alternate;
+        }
+
+        .wa-item i {
+            font-size: 22px;
+            color: rgba(37, 211, 102, 0.9);
+            text-shadow: 0 0 5px rgba(37, 211, 102, 0.7);
+        }
+
+        .wa-item:active {
+            background: rgba(37, 211, 102, 0.8);
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+        }
+        .wa-item:active i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .wa-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(37, 211, 102, 1);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Styling modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: rgba(10, 14, 39, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+            border: 1px solid rgba(37, 211, 102, 0.5);
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .modal-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #25d366;
+            color: #25d366;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            color: #25d366;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 0 0 5px #25d366;
+        }
+
+        .modal-text {
+            font-size: 16px;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px transparent;
+        }
+
+        .btn-batal {
+            background: rgba(100, 100, 100, 0.5);
+            color: #e0e0e0;
+            border: 1px solid rgba(200, 200, 200, 0.3);
+        }
+
+        .btn-batal:hover {
+            background: rgba(120, 120, 120, 0.7);
+            box-shadow: 0 0 10px rgba(200, 200, 200, 0.4);
+        }
+
+        .btn-lanjut {
+            background: rgba(37, 211, 102, 0.7);
+            color: white;
+            border: 1px solid #25d366;
+        }
+
+        .btn-lanjut:hover {
+            background: rgba(37, 211, 102, 0.9);
+            box-shadow: 0 0 10px #25d366;
+        }
+
+        /* Animasi */
+        @keyframes blink-grid {
+            0% { background-color: rgba(10, 14, 39, 0.1); }
+            100% { background-color: rgba(10, 14, 39, 0.3); }
+        }
+
+        @keyframes move-glow {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes glow-title {
+            0% { text-shadow: 0 0 10px #25d366, 0 0 20px #25d366; }
+            100% { text-shadow: 0 0 15px #25d366, 0 0 30px #25d366, 0 0 40px #25d366; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elemen latar belakang cyber -->
+    <div class="cyber-grid"></div>
+    <div class="cyber-glow glow-1"></div>
+
+    <div class="container">
+        <h1 class="cyber-title"><i class="fab fa-whatsapp mr-2"></i>XanSan</h1>
+        <div class="pilihan-list">
+            <!-- Pilihan WhatsApp dengan nomor baru -->
+            <a href="https://wa.me/6285849848102" class="wa-item" data-nama="Nomor WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+                085849848102
+            </a>
+        </div>
+    </div>
+
+    <!-- Peringatan (Modal) -->
+    <div class="modal" id="peringatanModal">
+        <div class="modal-content">
+            <i class="fab fa-whatsapp modal-icon"></i>
+            <h3 class="modal-title">PERINGATAN!</h3>
+            <p class="modal-text" id="modalText">handak men save Nomor WA nya Ilmi Azzikri Paling Ganteng. Bujuran?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-batal" id="btnBatal">Kada</button>
+                <button class="modal-btn btn-lanjut" id="btnLanjut">Bujuran</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ambil elemen-elemen yang dibutuhkan
+        const waItem = document.querySelector('.wa-item');
+        const modal = document.getElementById('peringatanModal');
+        const btnBatal = document.getElementById('btnBatal');
+        const btnLanjut = document.getElementById('btnLanjut');
+        const modalText = document.getElementById('modalText');
+        
+        let targetUrl = ''; // Simpan URL tujuan sementara
+
+        // Tambah event klik ke tombol WhatsApp
+        waItem.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            targetUrl = waItem.getAttribute('href');
+            const namaSitus = waItem.getAttribute('data-nama');
+
+            modalText.textContent = `handak men save Nomor WA nya Ilmi Azzikri Paling Ganteng. Bujuran?`;
+            modal.style.display = 'flex';
+        });
+
+        // Event klik tombol Kada
+        btnBatal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Event klik tombol Bujuran
+        btnLanjut.addEventListener('click', () => {
+            window.location.href = targetUrl;
+            modal.style.display = 'none';
+        });
+
+        // Tutup modal jika mengklik area luar konten modal
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
