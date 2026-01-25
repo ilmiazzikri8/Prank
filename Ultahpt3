@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Ulang Tahun ke-40 Abah</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 8px;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 350px;
+            padding: 12px 10px;
+            border-radius: 18px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.2);
+            position: relative;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* Hiasan Balon */
+        .baloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            border-radius: 50%;
+            animation: float 3.5s ease-in-out infinite;
+        }
+
+        .baloon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1.5px;
+            height: 10px;
+            background-color: #333;
+        }
+
+        .baloon-1 { background-color: #FF5252; top: -12px; left: 6px; animation-delay: 0s; }
+        .baloon-2 { background-color: #4CAF50; top: -10px; right: 6px; animation-delay: 0.5s; }
+        .baloon-3 { background-color: #2196F3; bottom: -12px; left: 15px; animation-delay: 1s; }
+        .baloon-4 { background-color: #9C27B0; bottom: -12px; left: 40px; animation-delay: 1.5s; }
+        .baloon-5 { background-color: #FF4081; top: 15%; right: -6px; animation-delay: 2s; }
+        .baloon-6 { background-color: #FF9800; top: 5%; left: -6px; animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Bagian Lilin Angka 40 */
+        .candle-section {
+            margin-bottom: 8px;
+            margin-top: 4px;
+        }
+
+        .number-40 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #DAA520;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+            margin-bottom: 4px;
+        }
+
+        /* Kontainer Lilin Angka 4 dan 0 */
+        .number-candles {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Desain Lilin Angka 4 */
+        .candle-4 {
+            position: relative;
+            width: 28px;
+            height: 42px;
+            background-color: #FFF8E1;
+            border-radius: 4px 4px 2px 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .candle-4::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 7px;
+            height: 28px;
+            background-color: #E8E4D6;
+            border-radius: 3px;
+        }
+
+        .candle-4::after {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 9px;
+            height: 9px;
+            background-color: #FF7043;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #FF5722;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        /* Desain Lilin Angka 0 */
+        .candle-0 {
+            position: relative;
+            width: 28px;
+            height: 42px;
+            background-color: #FFF8E1;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .candle-0::before {
+            content: '';
+            width: 18px;
+            height: 32px;
+            background-color: #E8E4D6;
+            border-radius: 50%;
+        }
+
+        .candle-0::after {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 9px;
+            height: 9px;
+            background-color: #FF7043;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #FF5722;
+            animation: flicker 1.5s infinite alternate;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Judul */
+        .title {
+            color: #B8860B;
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Teks Ucapan */
+        .message {
+            color: #222222;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            text-align: left;
+            white-space: pre-line;
+            padding: 0 8px;
+        }
+
+        /* Tanda Tangan */
+        .signature {
+            color: #444444;
+            font-style: italic;
+            text-align: right;
+            font-size: 14px;
+            padding-right: 8px;
+            font-weight: 500;
+        }
+
+        /* Efek Kilau */
+        .shine {
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -75%; }
+            100% { left: 150%; }
+        }
+
+        /* Efek Kelopak Bunga */
+        .petal {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #FF69B4;
+            border-radius: 50% 0;
+            animation: fall 6s ease-in-out infinite;
+        }
+
+        .petal-1 { top: 12%; left: 4%; animation-delay: 0s; }
+        .petal-2 { top: 22%; right: 6%; animation-delay: 1s; }
+        .petal-3 { top: 52%; left: 8%; animation-delay: 2s; }
+        .petal-4 { top: 62%; right: 4%; animation-delay: 3s; }
+        .petal-5 { top: 32%; left: 12%; animation-delay: 4s; }
+        .petal-6 { top: 42%; right: 10%; animation-delay: 5s; }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(350px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Hiasan Balon -->
+        <div class="baloon baloon-1"></div>
+        <div class="baloon baloon-2"></div>
+        <div class="baloon baloon-3"></div>
+        <div class="baloon baloon-4"></div>
+        <div class="baloon baloon-5"></div>
+        <div class="baloon baloon-6"></div>
+
+        <!-- Hiasan Kelopak Bunga -->
+        <div class="petal petal-1"></div>
+        <div class="petal petal-2"></div>
+        <div class="petal petal-3"></div>
+        <div class="petal petal-4"></div>
+        <div class="petal petal-5"></div>
+        <div class="petal petal-6"></div>
+
+        <!-- Efek Kilau -->
+        <div class="shine"></div>
+
+        <!-- Bagian Lilin Angka 40 -->
+        <div class="candle-section">
+            <div class="number-40">✨ ULANG TAHUN KE-40 ✨</div>
+            <div class="number-candles">
+                <div class="candle-4"></div>
+                <div class="candle-0"></div>
+            </div>
+        </div>
+
+        <!-- Judul -->
+        <h1 class="title">SELAMAT ULANG TAHUN, ABAH!</h1>
+
+        <!-- Ucapan -->
+        <div class="message">
+selamat ulang tahun yang ke 40, abah.
+mudahan tahun ini menjadi lebih berkah dan di panjangkan umur untuk menemui tahun berikutnya
+
+maaf kada kawa mambari hadiah tahun ini, kawannya lewat pengucapan ja
+
+terimakasih sudah menjadi pijakan yang kuat nan kokoh gasan kami berataan
+
+mudahan Allah selalu memberikan kesehatan dan kebahagiaan gasan abah, semangat terus tiap hari
+
+ini ketikan sarungan dan dari hati, mudahan kawa jadi hadiah yang baik
+        </div>
+
+        <!-- Tanda Tangan -->
+        <div class="signature">
+                       dari anakmu
+
+            Muhammad Ilmi Azzikri
+        </div>
+    </div>
+</body>
+</html>
