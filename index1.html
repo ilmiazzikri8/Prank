@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maaf...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Kotak Utama */
+        .sorry-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 4rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(168, 237, 234, 0.4);
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        /* Efek Mengambang */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(0.5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Emoji 🙏 Sebagai Logo */
+        .love-logo {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: pulseLogo 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Teks Judul */
+        .sorry-title {
+            font-size: 2.5rem;
+            color: #2d98da;
+            margin-bottom: 1rem;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .sorry-title::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, #2d98da, #fed6e3);
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: growLine 3s ease infinite;
+        }
+
+        @keyframes growLine {
+            0% { width: 0; }
+            50% { width: 70px; }
+            100% { width: 0; }
+        }
+
+        /* Teks Pesan */
+        .sorry-message {
+            font-size: 1.1rem;
+            color: #4a6fa5;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            opacity: 0;
+            animation: fadeIn 3s forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tombol */
+        .forgive-btn {
+            padding: 0.8rem 2.5rem;
+            background: linear-gradient(90deg, #2d98da, #a8edea);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(45, 152, 218, 0.3);
+            opacity: 0;
+            animation: fadeInBtn 3s forwards 2s;
+        }
+
+        @keyframes fadeInBtn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .forgive-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(45, 152, 218, 0.5);
+        }
+
+        /* Efek Partikel Emoji 🙏 Kecil */
+        .love-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: particleFall linear infinite;
+        }
+
+        @keyframes particleFall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="love-particles" id="particlesContainer"></div>
+
+    <div class="sorry-container">
+        <div class="love-logo">🙏</div>
+        <h1 class="sorry-title">Aku Minta Maaf</h1>
+        <p class="sorry-message">
+            Aku tahu aku salah dan membuat kamu kecewa. Aku sungguh menyesal atas apa yang terjadi, dan berjanji akan berusaha lebih baik lagi. Semoga kamu bisa memaafkan aku ya...
+        </p>
+        <button class="forgive-btn" onclick="showThankYou()">Maafin Dong...</button>
+    </div>
+
+    <script>
+        // Membuat efek partikel emoji 🙏 yang jatuh
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            const particleCount = 25;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.innerText = '🙏';
+                
+                // Posisi acak
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Pesan terima kasih setelah tombol ditekan
+        function showThankYou() {
+            const container = document.querySelector('.sorry-container');
+            container.innerHTML = `
+                <div class="love-logo" style="animation: pulseLogo 1.5s ease-in-out infinite;">🙏❤️</div>
+                <h1 class="sorry-title">Terima Kasih Sudah Memaafkan!</h1>
+                <p class="sorry-message">Aku akan selalu menjaga perasaan kamu dan tidak akan membuat kamu kecewa lagi. Cinta kamu selalu selamanya...</p>
+            `;
+            // Tambahkan partikel lebih banyak
+            createParticles();
+        }
+
+        // Jalankan saat halaman dimuat
+        window.onload = () => {
+            createParticles();
+        };
+    </script>
+</body>
+</html>
